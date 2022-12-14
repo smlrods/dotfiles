@@ -5,6 +5,8 @@ nnoremap <leader>s :set spell!
 
 syntax on 
 set number 
+set relativenumber
+set number relativenumber
 set noswapfile 
 set hlsearch 
 set ignorecase 

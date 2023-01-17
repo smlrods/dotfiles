@@ -1,6 +1,6 @@
 require("mason").setup()
 require("mason-lspconfig").setup {
-    ensure_installed = { "sumneko_lua", "quick_lint_js" },
+    ensure_installed = { "sumneko_lua", "quick_lint_js", "tsserver", "cssls" },
 }
 
 local on_attach = function(_, _)
@@ -21,6 +21,16 @@ require("lspconfig").sumneko_lua.setup {
 }
 
 require("lspconfig").quick_lint_js.setup {
+  on_attach = on_attach,
+  capabilities = capabilities
+}
+
+require("lspconfig").tsserver.setup {
+  on_attach = on_attach,
+  capabilities = capabilities
+}
+
+require("lspconfig").cssls.setup {
   on_attach = on_attach,
   capabilities = capabilities
 }

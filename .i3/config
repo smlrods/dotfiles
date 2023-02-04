@@ -1,9 +1,36 @@
-include catppuccin-mocha
 # i3 config file (v4)
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
 
 # Set mod key (Mod1=<Alt>, Mod4=<Super>)
 set $mod Mod4
+
+## Catppuccin Mocha
+
+set $rosewater #f5e0dc
+set $flamingo  #f2cdcd
+set $pink      #f5c2e7
+set $mauve     #cba6f7
+set $red       #f38ba8
+set $maroon    #eba0ac
+set $peach     #fab387
+set $green     #a6e3a1
+set $teal      #94e2d5
+set $sky       #89dceb
+set $sapphire  #74c7ec
+set $blue      #89b4fa
+set $lavender  #b4befe
+set $text      #cdd6f4
+set $subtext1  #bac2de
+set $subtext0  #a6adc8
+set $overlay2  #9399b2
+set $overlay1  #7f849c
+set $overlay0  #6c7086
+set $surface2  #585b70
+set $surface1  #45475a
+set $surface0  #313244
+set $base      #1e1e2e
+set $mantle    #181825
+set $crust     #11111b
 
 # set default desktop layout (default is tiling)
 # workspace_layout tabbed <stacking|tabbed>
@@ -142,9 +169,9 @@ bindsym $mod+Ctrl+Left workspace prev
 # to display names or symbols instead of plain workspace numbers you can use
 # something like: set $ws1 1:mail
 #                 set $ws2 2:
-set $ws1 1:
-set $ws2 2:
-set $ws3 3:
+set $ws1 1
+set $ws2 2
+set $ws3 3
 set $ws4 4
 set $ws5 5
 set $ws6 6
@@ -282,7 +309,7 @@ exec --no-startup-id pamac-tray
 exec --no-startup-id clipit
 # exec --no-startup-id blueman-applet
 # exec_always --no-startup-id sbxkb
-exec --no-startup-id start_conky_maia
+# exec --no-startup-id start_conky_maia
 # exec --no-startup-id start_conky_green
 exec --no-startup-id xautolock -time 10 -locker blurlock
 exec_always --no-startup-id ff-theme-util
@@ -321,9 +348,10 @@ set_from_resource $term_color15    color15
 
 # Start i3bar to display a workspace bar (plus the system information i3status if available)
 bar {
+  font pango: DejaVu Sans Mono, Font Awesome 6 Free 15
 	i3bar_command i3bar
-	status_command i3status
-	position bottom
+	status_command i3status-rs /home/sml/.config/i3status-rust/config.toml
+	position TOP 
 
 ## please set your primary output first. Example: 'xrandr --output eDP1 --primary'
 #	tray_output primary
@@ -335,14 +363,14 @@ bar {
 	strip_workspace_numbers yes
 
     colors {
-        background #11111b
+        background $base
         statusline $rosewater
         separator  $pink
 
 #                      border  backgr. text
-        focused_workspace  $pink $base #11111b
-        active_workspace   $pink $base $text
-        inactive_workspace $mauve #1e1e2e #cdd6f4
+        focused_workspace  $text $surface2 $text
+        active_workspace   $text $base $text
+        inactive_workspace $mauve $base $mauve
         binding_mode       $overlay0 $base $text
         urgent_workspace   $peach $base $peach
     }

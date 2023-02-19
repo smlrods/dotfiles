@@ -55,7 +55,7 @@ font xft:"MesloLGS NF" 10
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec alacritty
+bindsym $mod+Return exec st 
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -348,10 +348,10 @@ set_from_resource $term_color15    color15
 
 # Start i3bar to display a workspace bar (plus the system information i3status if available)
 bar {
-  font pango: DejaVu Sans Mono, Font Awesome 6 Free 15
+  font pango: DejaVu Sans Mono, Font Awesome 6 Free 10
 	i3bar_command i3bar
 	status_command i3status-rs /home/sml/.config/i3status-rust/config.toml
-	position TOP 
+	position BOTTOM 
 
 ## please set your primary output first. Example: 'xrandr --output eDP1 --primary'
 #	tray_output primary
@@ -370,7 +370,7 @@ bar {
 #                      border  backgr. text
         focused_workspace  $text $surface2 $text
         active_workspace   $text $base $text
-        inactive_workspace $mauve $base $mauve
+        inactive_workspace $text $base $text
         binding_mode       $overlay0 $base $text
         urgent_workspace   $peach $base $peach
     }

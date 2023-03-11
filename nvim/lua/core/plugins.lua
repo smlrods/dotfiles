@@ -13,14 +13,28 @@ local packer_bootstrap = ensure_packer()
 
 return require('packer').startup(function(use)
   use 'wbthomason/packer.nvim'
+
+  -- Themes
   use 'ellisonleao/gruvbox.nvim'
+  use 'folke/tokyonight.nvim'
   use 'nvim-tree/nvim-tree.lua'
-  use { "catppuccin/nvim", as = "catppuccin" }
   use 'nvim-tree/nvim-web-devicons'
   use 'nvim-lualine/lualine.nvim'
+
+  -- treesitter
   use 'nvim-treesitter/nvim-treesitter'
 
+  use "lukas-reineke/indent-blankline.nvim"
+  -- use "jose-elias-alvarez/null-ls.nvim"
+
+  -- git
   use 'lewis6991/gitsigns.nvim'
+  use {
+    'numToStr/Comment.nvim',
+    config = function()
+        require('Comment').setup()
+    end
+  }
 
   use {
 	"windwp/nvim-autopairs",
@@ -31,15 +45,19 @@ return require('packer').startup(function(use)
   use 'hrsh7th/nvim-cmp'
   use 'hrsh7th/cmp-nvim-lsp'
   use 'hrsh7th/cmp-buffer'
+  use 'hrsh7th/cmp-path'
   use 'L3MON4D3/LuaSnip'
   use 'saadparwaiz1/cmp_luasnip'
   use 'rafamadriz/friendly-snippets'
 
+  -- mason
   use {
     "williamboman/mason.nvim",
     "williamboman/mason-lspconfig.nvim",
     "neovim/nvim-lspconfig",
   }
+
+  -- telescope
   use {
     'nvim-telescope/telescope.nvim',
     tag = '0.1.0',

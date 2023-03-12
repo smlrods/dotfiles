@@ -1,8 +1,8 @@
 local ensure_packer = function()
   local fn = vim.fn
-  local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
+  local install_path = fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
   if fn.empty(fn.glob(install_path)) > 0 then
-    fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
+    fn.system({ 'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path })
     vim.cmd [[packadd packer.nvim]]
     return true
   end
@@ -16,29 +16,45 @@ return require('packer').startup(function(use)
 
   -- Themes
   use 'ellisonleao/gruvbox.nvim'
-  use 'folke/tokyonight.nvim'
   use 'nvim-tree/nvim-tree.lua'
   use 'nvim-tree/nvim-web-devicons'
   use 'nvim-lualine/lualine.nvim'
+
+  use 'norcalli/nvim-colorizer.lua'
 
   -- treesitter
   use 'nvim-treesitter/nvim-treesitter'
 
   use "lukas-reineke/indent-blankline.nvim"
-  -- use "jose-elias-alvarez/null-ls.nvim"
+
+  -- prettier
+  use 'MunifTanjim/prettier.nvim'
+
+  use "jose-elias-alvarez/null-ls.nvim"
 
   -- git
   use 'lewis6991/gitsigns.nvim'
   use {
     'numToStr/Comment.nvim',
     config = function()
-        require('Comment').setup()
+      require('Comment').setup()
     end
   }
 
   use {
-	"windwp/nvim-autopairs",
+    "windwp/nvim-autopairs",
     config = function() require("nvim-autopairs").setup {} end
+  }
+
+  use {
+    "windwp/nvim-ts-autotag",
+    config = function()
+      require 'nvim-treesitter.configs'.setup {
+        autotag = {
+          enable = true,
+        }
+      }
+    end
   }
 
   -- completion
@@ -49,6 +65,7 @@ return require('packer').startup(function(use)
   use 'L3MON4D3/LuaSnip'
   use 'saadparwaiz1/cmp_luasnip'
   use 'rafamadriz/friendly-snippets'
+  use 'onsails/lspkind.nvim'
 
   -- mason
   use {
@@ -61,7 +78,12 @@ return require('packer').startup(function(use)
   use {
     'nvim-telescope/telescope.nvim',
     tag = '0.1.0',
-    requires = { {'nvim-lua/plenary.nvim'} }
+    requires = { { 'nvim-lua/plenary.nvim' } }
+  }
+
+  use {
+    "nvim-telescope/telescope-file-browser.nvim",
+    requires = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" }
   }
   -- My plugins here
   -- use 'foo1/bar1.nvim'

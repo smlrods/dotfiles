@@ -1,6 +1,6 @@
 require("mason").setup()
 require("mason-lspconfig").setup {
-    ensure_installed = { "lua_ls", "quick_lint_js", "tsserver", "cssls" },
+    ensure_installed = { "lua_ls", "quick_lint_js", "tsserver", "cssls", "tailwindcss" },
 }
 
 vim.o.updatetime = 1000
@@ -51,6 +51,11 @@ require("lspconfig").quick_lint_js.setup {
 }
 
 require("lspconfig").tsserver.setup {
+  on_attach = on_attach,
+  capabilities = capabilities
+}
+
+require("lspconfig").tailwindcss.setup {
   on_attach = on_attach,
   capabilities = capabilities
 }

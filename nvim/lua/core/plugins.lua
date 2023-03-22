@@ -16,6 +16,7 @@ return require('packer').startup(function(use)
 
   -- Themes
   use 'ellisonleao/gruvbox.nvim'
+  use { "catppuccin/nvim", as = "catppuccin" }
   use 'nvim-tree/nvim-tree.lua'
   use 'nvim-tree/nvim-web-devicons'
   use 'nvim-lualine/lualine.nvim'
@@ -29,8 +30,6 @@ return require('packer').startup(function(use)
 
   -- prettier
   use 'MunifTanjim/prettier.nvim'
-
-  use "jose-elias-alvarez/null-ls.nvim"
 
   -- git
   use 'lewis6991/gitsigns.nvim'
@@ -56,6 +55,19 @@ return require('packer').startup(function(use)
       }
     end
   }
+
+  -- Lua
+use {
+  "folke/trouble.nvim",
+  requires = "nvim-tree/nvim-web-devicons",
+  config = function()
+    require("trouble").setup {
+      -- your configuration comes here
+      -- or leave it empty to use the default settings
+      -- refer to the configuration section below
+    }
+  end
+}
 
   -- completion
   use 'hrsh7th/nvim-cmp'

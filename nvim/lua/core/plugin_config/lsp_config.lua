@@ -1,6 +1,6 @@
 require("mason").setup()
 require("mason-lspconfig").setup {
-    ensure_installed = { "quick_lint_js", "tsserver", "tailwindcss" },
+    ensure_installed = { "quick_lint_js", "tsserver" },
 }
 
 vim.o.updatetime = 1000
@@ -14,7 +14,7 @@ vim.diagnostic.config({
   severity_sort = false,
 })
 
-local on_attach = function(_, _)
+local on_attach = function(client, bufnr)
   vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, {})
   vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, {})
   
@@ -22,6 +22,7 @@ local on_attach = function(_, _)
   vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, {})
   vim.keymap.set('n', 'gr', require('telescope.builtin').lsp_references, {})
   vim.keymap.set('n', 'K', vim.lsp.buf.hover, {})
+
   vim.api.nvim_create_autocmd("CursorHold", {
   buffer = bufnr,
   callback = function()
@@ -40,10 +41,10 @@ end
 
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
-require("lspconfig").lua_ls.setup {
-  on_attach = on_attach,
-  capabilities = capabilities
-}
+-- require("lspconfig").lua_ls.setup {
+--   on_attach = on_attach,
+--   capabilities = capabilities
+-- }
 
 require("lspconfig").quick_lint_js.setup {
   on_attach = on_attach,
@@ -55,12 +56,7 @@ require("lspconfig").tsserver.setup {
   capabilities = capabilities
 }
 
-require("lspconfig").tailwindcss.setup {
-  on_attach = on_attach,
-  capabilities = capabilities
-}
-
-require("lspconfig").cssls.setup {
-  on_attach = on_attach,
-  capabilities = capabilities
-}
+-- require("lspconfig").cssls.setup {
+--   on_attach = on_attach,
+--   capabilities = capabilities
+-- }

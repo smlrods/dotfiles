@@ -19,7 +19,7 @@ vim.keymap.set('n', '<leader>h', ':nohlsearch<CR>')
 vim.keymap.set('i', 'jk', '<Esc>', options)
 
 vim.opt.nu = true
--- vim.opt.relativenumber = true
+vim.opt.relativenumber = true
 
 vim.opt.swapfile = false
 vim.opt.backup = false

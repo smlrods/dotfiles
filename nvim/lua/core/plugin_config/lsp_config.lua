@@ -1,6 +1,6 @@
 require("mason").setup()
 require("mason-lspconfig").setup {
-    ensure_installed = { "quick_lint_js", "tsserver" },
+    ensure_installed = { "quick_lint_js" },
 }
 
 vim.o.updatetime = 1000
@@ -50,13 +50,18 @@ require("lspconfig").quick_lint_js.setup {
   on_attach = on_attach,
   capabilities = capabilities
 }
-
+--
 require("lspconfig").tsserver.setup {
   on_attach = on_attach,
   capabilities = capabilities
 }
 
--- require("lspconfig").cssls.setup {
+require("lspconfig").cssls.setup {
+  on_attach = on_attach,
+  capabilities = capabilities
+}
+
+-- require("lspconfig").eslint.setup {
 --   on_attach = on_attach,
 --   capabilities = capabilities
 -- }

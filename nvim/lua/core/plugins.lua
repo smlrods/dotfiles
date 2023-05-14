@@ -20,14 +20,14 @@ return require('packer').startup(function(use)
   use 'nvim-tree/nvim-tree.lua'
   use 'nvim-tree/nvim-web-devicons'
   use 'nvim-lualine/lualine.nvim'
-  use 'marko-cerovac/material.nvim'
 
   use 'norcalli/nvim-colorizer.lua'
 
   -- treesitter
   use 'nvim-treesitter/nvim-treesitter'
+  use 'nvim-treesitter/nvim-treesitter-context'
 
-  use "lukas-reineke/indent-blankline.nvim"
+  -- use "lukas-reineke/indent-blankline.nvim"
 
   -- prettier
   use 'MunifTanjim/prettier.nvim'
@@ -40,6 +40,9 @@ return require('packer').startup(function(use)
       require('Comment').setup()
     end
   }
+
+  -- null-ls
+  use 'jose-elias-alvarez/null-ls.nvim'
 
   use {
     "windwp/nvim-autopairs",
@@ -58,17 +61,17 @@ return require('packer').startup(function(use)
   }
 
   -- Lua
-use {
-  "folke/trouble.nvim",
-  requires = "nvim-tree/nvim-web-devicons",
-  config = function()
-    require("trouble").setup {
-      -- your configuration comes here
-      -- or leave it empty to use the default settings
-      -- refer to the configuration section below
-    }
-  end
-}
+  use {
+    "folke/trouble.nvim",
+    requires = "nvim-tree/nvim-web-devicons",
+    config = function()
+      require("trouble").setup {
+        -- your configuration comes here
+        -- or leave it empty to use the default settings
+        -- refer to the configuration section below
+      }
+    end
+  }
 
   -- completion
   use 'hrsh7th/nvim-cmp'

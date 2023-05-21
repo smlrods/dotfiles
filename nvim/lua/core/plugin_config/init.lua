@@ -1,4 +1,5 @@
-require("core.plugin_config.gruvbox")
+-- require("core.plugin_config.gruvbox")
+require("core.plugin_config.tokyonight")
 -- require("core.plugin_config.catppuccin")
 -- require("core.plugin_config.material")
 require("core.plugin_config.lualine")

@@ -3,13 +3,13 @@ require("mason-lspconfig").setup({
 	ensure_installed = { "quick_lint_js" },
 })
 
-vim.o.updatetime = 1000
+vim.o.updatetime = 500
 vim.cmd([[autocmd! CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, {focus=false})]])
 
 vim.diagnostic.config({
 	virtual_text = false,
 	signs = true,
-	underline = false,
+	underline = true,
 	update_in_insert = false,
 	severity_sort = false,
 })

@@ -25,6 +25,9 @@ return require("packer").startup(function(use)
 
 	use("norcalli/nvim-colorizer.lua")
 
+  -- discord
+  use('andweeb/presence.nvim')
+
 	-- treesitter
 	use("nvim-treesitter/nvim-treesitter")
 	use("nvim-treesitter/nvim-treesitter-context")

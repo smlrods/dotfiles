@@ -61,7 +61,21 @@ require("lspconfig").cssls.setup({
 	capabilities = capabilities,
 })
 
--- require("lspconfig").eslint.setup {
---   on_attach = on_attach,
---   capabilities = capabilities
--- }
+require("lspconfig").phpactor.setup({
+	on_attach = on_attach,
+	capabilities = capabilities,
+	init_options = {
+		["language_server_phpstan.enabled"] = false,
+		["language_server_psalm.enabled"] = false,
+	},
+})
+
+require("lspconfig").eslint.setup({
+	on_attach = on_attach,
+	capabilities = capabilities,
+})
+
+require("lspconfig").intelephense.setup({
+	on_attach = on_attach,
+	capabilities = capabilities,
+})

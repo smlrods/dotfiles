@@ -18,15 +18,14 @@ return require("packer").startup(function(use)
 	use("ellisonleao/gruvbox.nvim")
 	use({ "catppuccin/nvim", as = "catppuccin" })
 	use("folke/tokyonight.nvim")
+  use('marko-cerovac/material.nvim')
+  use ({ 'projekt0n/github-nvim-theme' })
 	use("nvim-tree/nvim-tree.lua")
 	use("nvim-tree/nvim-web-devicons")
 	use("nvim-lualine/lualine.nvim")
 	use("Mofiqul/dracula.nvim")
 
 	use("norcalli/nvim-colorizer.lua")
-
-  -- discord
-  use('andweeb/presence.nvim')
 
 	-- treesitter
 	use("nvim-treesitter/nvim-treesitter")

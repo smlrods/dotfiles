@@ -45,9 +45,6 @@ return require("packer").startup(function(use)
 		end,
 	})
 
-	-- null-ls
-	use("jose-elias-alvarez/null-ls.nvim")
-
 	use({
 		"windwp/nvim-autopairs",
 		config = function()

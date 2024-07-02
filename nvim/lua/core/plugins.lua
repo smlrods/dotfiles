@@ -12,43 +12,16 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 local plugins = {
-	"ellisonleao/gruvbox.nvim",
-	{ "catppuccin/nvim", as = "catppuccin" },
-	"folke/tokyonight.nvim",
-  'marko-cerovac/material.nvim',
-  { 'projekt0n/github-nvim-theme' },
 	"nvim-tree/nvim-tree.lua",
 	"nvim-tree/nvim-web-devicons",
-	"nvim-lualine/lualine.nvim",
-	"mofiqul/dracula.nvim",
-	"norcalli/nvim-colorizer.lua",
 	-- treesitter
 	"nvim-treesitter/nvim-treesitter",
 	"nvim-treesitter/nvim-treesitter-context",
-	-- use "lukas-reineke/indent-blankline.nvim"
-	"muniftanjim/prettier.nvim",
-	"lewis6991/gitsigns.nvim",
-  "numtostr/comment.nvim",
-  "windwp/nvim-autopairs",
-	{
-		"windwp/nvim-ts-autotag",
-		config = function()
-			require("nvim-treesitter.configs").setup({
-				autotag = {
-					enable = true,
-				},
-			})
-		end,
-	},
 	{
 		"folke/trouble.nvim",
 		dependencies = "nvim-tree/nvim-web-devicons",
 		config = function()
-			require("trouble").setup({
-				-- your configuration comes here
-				-- or leave it empty to use the default settings
-				-- refer to the configuration section below
-			})
+			require("trouble").setup({})
 		end,
 	},
 	"hrsh7th/nvim-cmp",
@@ -56,9 +29,6 @@ local plugins = {
 	"hrsh7th/cmp-buffer",
 	"hrsh7th/cmp-path",
 	"l3mon4d3/luasnip",
-	"saadparwaiz1/cmp_luasnip",
-	"rafamadriz/friendly-snippets",
-	"onsails/lspkind.nvim",
 	{
 		"williamboman/mason.nvim",
 		"williamboman/mason-lspconfig.nvim",

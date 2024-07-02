@@ -1,6 +1,6 @@
 require("mason").setup()
 require("mason-lspconfig").setup({
-	ensure_installed = { "quick_lint_js", "tsserver" },
+	ensure_installed = { },
 })
 
 vim.o.updatetime = 500

@@ -1,73 +1,116 @@
-@import url('hide_tabs_toolbar.css');
 @import url('window_control_placeholder_support.css');
+@import url('hide_tabs_toolbar.css');
 
-html {
-  --custom-bg: #f5f5f5;
+/* Sidebery */
+#main-window[titlepreface*="🦊 "] .tabbrowser-tab {
+  visibility: collapse !important;
 }
-
-body {
-  background: var(--custom-bg) !important;
+ 
+#main-window[titlepreface*="🦊 "] .titlebar-button {
+  height: 40px !important;
 }
+ 
+/* #main-window[titlepreface*="🦊 "] #nav-bar {
+  margin-top: -40px;
+  margin-right: 137px;
+  box-shadow: none !important;
+} */
 
-html:not([privatebrowsingmode="temporary"]) #sidebar-box {
-  background: var(--custom-bg) !important;
+#main-window[titlepreface*="🦊 "] #titlebar-spacer {
+  background-color: var(--chrome-secondary-background-color);
 }
-
-html:not([privatebrowsingmode="temporary"]) #sidebar-splitter {
-  border: none !important;
-  background: transparent !important;
-  width: 1px !important;
+ 
+#main-window[titlepreface*="🦊 "] #titlebar-buttonbox-container {
+  background-color: var(--chrome-secondary-background-color);
 }
-
-
-html:not([privatebrowsingmode="temporary"]) .titlebar-buttonbox-container {
-  position: absolute;
-  right: 0;
-  top: 9px;
-  display: flex;
-  justify-content: center;
-  width: 110px !important;
+ 
+#main-window[titlepreface*="🦊 "] .titlebar-color {
+  background-color: var(--toolbar-bgcolor);
 }
-
-.titlebar-button {
-  width: 36px !important;
+ 
+#sidebar-box[sidebarcommand="_3c078156-979c-498b-8990-85f7987dd929_-sidebar-action"] #sidebar-header {
+  visibility: collapse;
 }
-
-html:not([privatebrowsingmode="temporary"]) #sidebar-header {
-  display: none;
-}
-
-#identity-icon-label {
-  display: none;
-}
-
-html:not([privatebrowsingmode="temporary"]) #sidebar-box {
-  --uc-sidebar-width: 60px;
-  --uc-sidebar-hover-width: 360px;
+ 
+#sidebar-box{
+  --uc-sidebar-width: 40px;
+  --uc-sidebar-hover-width: 250px;
+  --uc-autohide-sidebar-delay: 150ms; /* Wait 0.6s before hiding sidebar */
+  --uc-autohide-transition-duration: 115ms;
+  --uc-autohide-transition-type: linear;
+  --browser-area-z-index-sidebar: 3;
   position: relative;
   min-width: var(--uc-sidebar-width) !important;
   width: var(--uc-sidebar-width) !important;
   max-width: var(--uc-sidebar-width) !important;
-  z-index: 4 !important;
+  z-index: var(--browser-area-z-index-sidebar,3);
+}
+#sidebar-box[positionend]{ direction: rtl }
+#sidebar-box[positionend] > *{ direction: ltr }
+
+#sidebar-box[positionend]:-moz-locale-dir(rtl){ direction: ltr }
+#sidebar-box[positionend]:-moz-locale-dir(rtl) > *{ direction: rtl }
+
+#main-window[sizemode="fullscreen"] #sidebar-box{ --uc-sidebar-width: 1px; }
+
+#sidebar-splitter{ display: none }
+
+#sidebar-header{
+  overflow: hidden;
+  color: var(--chrome-color, inherit) !important;
+  padding-inline: 0 !important;
 }
 
-html:not([privatebrowsingmode="temporary"]) #main-window[sizemode="fullscreen"] #sidebar-box {
-  --uc-sidebar-width: 1px;
+#sidebar-header::before,
+#sidebar-header::after{
+  content: "";
+  display: flex;
+  padding-left: 8px;
 }
 
-html:not([privatebrowsingmode="temporary"]) #sidebar-splitter {
-  display: none;
-}
-
-html:not([privatebrowsingmode="temporary"]) #sidebar {
+#sidebar-header,
+#sidebar{
+  transition: min-width var(--uc-autohide-transition-duration) var(--uc-autohide-transition-type) var(--uc-autohide-sidebar-delay) !important;
   min-width: var(--uc-sidebar-width) !important;
+  will-change: min-width;
 }
-
-html:not([privatebrowsingmode="temporary"]) #sidebar-box:hover > #sidebar {
+#sidebar-box:hover > #sidebar-header,
+#sidebar-box:hover > #sidebar{
   min-width: var(--uc-sidebar-hover-width) !important;
+  transition-delay: 0ms !important;
 }
 
-html:not([privatebrowsingmode="temporary"]) .sidebar-panel {
+.sidebar-panel{
   background-color: transparent !important;
   color: var(--newtab-text-primary-color) !important;
+}
+
+.sidebar-panel #search-box{
+  -moz-appearance: none !important;
+  background-color: rgba(249,249,250,0.1) !important; 
+  color: inherit !important;
+}
+
+/* Add sidebar divider and give it background */
+
+#sidebar,
+#sidebar-header{
+  background-color: inherit !important;
+  border-inline: 1px solid rgb(80,80,80);
+  border-inline-width: 0px 1px;
+}
+
+#sidebar-box:not([positionend]) > :-moz-locale-dir(rtl),
+#sidebar-box[positionend] > *{
+  border-inline-width: 1px 0px;
+}
+
+/* Move statuspanel to the other side when sidebar is hovered so it doesn't get covered by sidebar */
+
+#sidebar-box:not([positionend]):hover ~ #appcontent #statuspanel{
+  inset-inline: auto 0px !important;
+}
+#sidebar-box:not([positionend]):hover ~ #appcontent #statuspanel-label{
+  margin-inline: 0px !important;
+  border-left-style: solid !important; 
 }
